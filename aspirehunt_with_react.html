@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast-Tracking Jobs and Internships</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" />
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <style>
+        /* (your existing CSS stays here, unchanged) */
+        body { font-family: Arial, sans-serif; }
+    </style>
+</head>
+
+<body>
+    <!-- Existing content -->
+
+    <!-- PLACE TO MOUNT REACT COMPONENT -->
+    <div id="react-notice-form"></div>
+
+    <!-- React component -->
+    <script type="text/babel">
+        const { useState } = React;
+
+        function NoticeBoardAndForm() {
+            const [notices, setNotices] = useState([
+                '🚀 New internships available now!',
+                '📢 Webinar on resume building this Friday!',
+                '🎯 Company hiring challenges next week!'
+            ]);
+
+            const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+            const [submitted, setSubmitted] = useState(false);
+
+            const handleFormChange = (e) => {
+                const { name, value } = e.target;
+                setFormData({ ...formData, [name]: value });
+            };
+
+            const handleSubmit = (e) => {
+                e.preventDefault();
+                console.log('Form Submitted:', formData);
+                setSubmitted(true);
+                setFormData({ name: '', email: '', message: '' });
+            };
+
+            return (
+                <div style={{ padding: '20px', maxWidth: '600px', margin: '40px auto', background: '#f0f0f0', borderRadius: '8px' }}>
+                    <h2 style={{ color: '#4f46e5' }}>📢 Notice Board</h2>
+                    <ul>
+                        {notices.map((notice, index) => (
+                            <li key={index} style={{ background: '#fff8c5', margin: '5px 0', padding: '10px', borderRadius: '5px' }}>{notice}</li>
+                        ))}
+                    </ul>
+                    <h2 style={{ color: '#4f46e5', marginTop: '20px' }}>✉️ Contact Us</h2>
+                    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                        <input name="name" value={formData.name} onChange={handleFormChange} placeholder="Your Name" required style={{ padding: '8px' }} />
+                        <input name="email" type="email" value={formData.email} onChange={handleFormChange} placeholder="Your Email" required style={{ padding: '8px' }} />
+                        <textarea name="message" value={formData.message} onChange={handleFormChange} placeholder="Your Message" required style={{ padding: '8px' }}></textarea>
+                        <button type="submit" style={{ padding: '10px', background: '#4f46e5', color: 'white', border: 'none', borderRadius: '5px' }}>Send Message</button>
+                    </form>
+                    {submitted && <p style={{ color: 'green', marginTop: '10px' }}>Thank you! Your message has been sent.</p>}
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('react-notice-form'));
+        root.render(<NoticeBoardAndForm />);
+    </script>
+
+    <!-- Existing footer and other scripts -->
+    <footer>
+        <p>© 2025 Fast-Tracking Jobs and Internships</p>
+        <div class="social_media">
+            <h4>Connect us :</h4>
+            <ul>
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            </ul>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
